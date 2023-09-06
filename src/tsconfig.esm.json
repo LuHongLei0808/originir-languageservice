@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"noImplicitReturns": true,
+		"noUnusedLocals": false,
+		"target": "es6",
+		"module": "es6",
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"declaration": true,
+		"stripInternal": true,
+		"outDir": "../lib/esm",
+		"noUnusedParameters": false,
+		"experimentalDecorators": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"lib": [
+			"es6"
+		]
+	}
+}

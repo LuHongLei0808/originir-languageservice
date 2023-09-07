@@ -203,7 +203,6 @@ class TodoLangVisitor(TodoLangGrammarVisitor):
                                "Duplicated register")
 
 
-
 # This function visits the gate declaration in the grammar.
 # It checks if the gate being used has been defined and if the number of qubits and parameters match the gate's definition.
 # If not, it notifies an error.

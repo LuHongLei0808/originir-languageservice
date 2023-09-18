@@ -1,4 +1,4 @@
-// Generated from c:\\Users\\BY23015S\\Desktop\\project\\originir-languageservice\\src\\parser\\antlr\\TodoLangGrammar.g4 by ANTLR 4.9.2
+// Generated from c:\Users\BY23015S\Desktop\project\originir-languageservice\src\parser\antlr\TodoLangGrammar.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -157,18 +157,18 @@ public class TodoLangGrammarParser extends Parser {
 	public ATN getATN() { return _ATN; }
 
 
-	    public gateList: { [key: string]: object; } = {"q": {}}; // gateList是一个公共成员变量，该字典的键是字符串类型，值为object类型，并赋�?�{"q": {}}
-	    public qubitNum = 0;  //量子位数�?0
-	    public cbitNum = 0;   //经典位数�?0
+	    public gateList: { [key: string]: object; } = {"q": {}}; 
+	    public qubitNum = 0;  
+	    public cbitNum = 0;   
 	    public currentGateName: string = "";
 	    public key1 = "params";
 	    public key2 = "arguments";
-	    public inDagger = false;   //当前是否在处理反�?
-	    public inControl = false;   //当前是否在处理控�?
+	    public inDagger = false;   
+	    public inControl = false;   
 	    public measureList: {[key: string]: number; } = {"a": 1};
 	    public isValidKey(key: string , object: object): key is keyof typeof object {
 				return key in object;
-		}          //判断key是否在object�?
+		}         
 	    public controlBit: {[key: string]: number; } = {};
 
 	public TodoLangGrammarParser(TokenStream input) {

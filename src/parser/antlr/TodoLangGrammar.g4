@@ -1,41 +1,30 @@
-//指定了ANTLR4语法规则文件的名称，表示这是一个名为"TodoLangGrammar"的语法规则。
 grammar TodoLangGrammar;
 
-//表示在解析器（Parser）中要插入自定义代码段。
 @parser::members{
-    public gateList: { [key: string]: object; } = {"q": {}}; // gateList是一个公共成员变量，该字典的键是字符串类型，值为object类型，并赋值{"q": {}}
-    public qubitNum = 0;  //量子位数为0
-    public cbitNum = 0;   //经典位数为0
+    public gateList: { [key: string]: object; } = {"q": {}}; 
+    public qubitNum = 0;  
+    public cbitNum = 0;   
     public currentGateName: string = "";
     public key1 = "params";
     public key2 = "arguments";
-    public inDagger = false;   //当前是否在处理反射
-    public inControl = false;   //当前是否在处理控制
+    public inDagger = false;   
+    public inControl = false;   
     public measureList: {[key: string]: number; } = {"a": 1};
     public isValidKey(key: string , object: object): key is keyof typeof object {
 			return key in object;
-	}          //判断key是否在object中
+	}         
     public controlBit: {[key: string]: number; } = {};
 }
 
 
-/*
-* Parse Rule
-*/
-
-//语法规则的起始点,包括NEWLINE、declaration、gate_func_statement和statement等规则，以及一个EOF标记表示文件的结束。
-//NEWLINE代表换行符，declaration代表声明，gate_func_statement代表量子门函数声明，statement代表语句。
 translationunit : NEWLINE* declaration*  gate_func_statement* statement+ EOF
 ;
 
 declaration: qinit_declaration 
            | cinit_declaration
-         //  | NEWLINE* gate_func_statement* qinit_declaration cinit_declaration
+
 ;
 
-//这是一个关于量子位初始化（qinit）的声明规则。在这个规则中，首先匹配关键字 QINIT_KEY，然后匹配一个整数字面量 Integer_Literal。
-//接着，在代码块中，将匹配到的整数字面量解析为整数并赋值给 this.qubitNum，用于记录量子位的数量,10代表10进制。
-//QINIT_KEY代表量子位初始化的关键字，Integer_Literal代表整数字面量
 qinit_declaration : QINIT_KEY Integer_Literal { 
     try {
         this.qubitNum = parseInt($ctx.Integer_Literal().text, 10);
@@ -60,12 +49,11 @@ quantum_gate_declaration: single_gate_without_parameter_declaration
 						| define_gate_declaration
 ;
 
-//LBRAK代表左中括号，RBRAK代表右中括号，Integer_Literal代表整数字面量
+
 index : LBRACK Integer_Literal RBRACK
 ;
 
-//这段代码作用是判断经典位索引是否越界，如果越界则报错。
-//c_KEY代表经典位，Q_KEY代表量子位，index代表索引
+
 c_KEY_declaration : C_KEY index	{ 
     try {
         if ($ctx.index().Integer_Literal() != null){
@@ -82,7 +70,7 @@ c_KEY_declaration : C_KEY index	{
 }
 ;
 
-//这段代码作用是判断量子位索引是否越界，如果越界则报错。
+
 q_KEY_declaration : Q_KEY index { 
     try {
         if ($ctx.index().Integer_Literal() != null){
